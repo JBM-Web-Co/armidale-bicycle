@@ -41,6 +41,7 @@
     height: 44px;
     width: auto;
     object-fit: contain;
+    border-radius: 50%;
 
     @include bp.above(tablet) {
         height: 52px;
@@ -92,7 +93,9 @@
     text-transform: uppercase;
     padding: $space-2 + 0.1rem $space-5;
     border-radius: $radius-sm;
-    transition: background 0.2s ease, transform 0.15s ease;
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
     cursor: pointer;
     min-height: 44px;
     white-space: nowrap;
