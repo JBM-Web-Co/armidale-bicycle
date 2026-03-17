@@ -1,0 +1,209 @@
+@use '../styles/variables' as *;
+@use '../styles/breakpoints' as bp;
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: $z-sticky;
+    padding: $space-4 0;
+    transition:
+        background 0.4s ease,
+        border-color 0.4s ease,
+        padding 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+    background: rgba($color-bg, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom-color: $color-border;
+    padding: $space-3 0;
+}
+
+.inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-6;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logoImg {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+
+    @include bp.above(tablet) {
+        height: 52px;
+    }
+}
+
+.nav {
+    display: none;
+    align-items: center;
+    gap: $space-8;
+
+    @include bp.above(tablet) {
+        display: flex;
+    }
+}
+
+.navLink {
+    font-family: $font-display;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+    transition: color 0.2s ease;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+        color: $color-text;
+    }
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+}
+
+.ctaBtn {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    background: $color-primary;
+    color: #fff;
+    font-family: $font-display;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: $space-2 + 0.1rem $space-5;
+    border-radius: $radius-sm;
+    transition: background 0.2s ease, transform 0.15s ease;
+    cursor: pointer;
+    min-height: 44px;
+    white-space: nowrap;
+
+    &:hover {
+        background: $color-primary-hover;
+        transform: translateY(-1px);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:hover {
+            transform: none;
+        }
+    }
+}
+
+.hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: $color-text;
+    border-radius: $radius-sm;
+    transition: background 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        background: $color-surface;
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    @include bp.above(tablet) {
+        display: none;
+    }
+}
+
+// Mobile drawer
+.drawer {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba($color-bg, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid $color-border;
+    padding: $space-6 $space-6 $space-8;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    z-index: $z-overlay;
+
+    @include bp.above(tablet) {
+        display: none;
+    }
+}
+
+.drawerLink {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $color-text;
+    padding: $space-3 0;
+    border-bottom: 1px solid $color-border;
+    transition: color 0.2s ease;
+    display: block;
+    cursor: pointer;
+
+    &:hover {
+        color: $color-primary;
+    }
+
+    &:last-of-type {
+        border-bottom: none;
+    }
+}
+
+.drawerCta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-2;
+    background: $color-primary;
+    color: #fff;
+    font-family: $font-display;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: $space-4 $space-6;
+    border-radius: $radius-sm;
+    margin-top: $space-4;
+    min-height: 52px;
+    transition: background 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        background: $color-primary-hover;
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+}

@@ -1,0 +1,196 @@
+@use '../styles/variables' as *;
+@use '../styles/breakpoints' as bp;
+
+.about {
+    @include section-padding;
+    background: $color-bg;
+    position: relative;
+    overflow: hidden;
+
+    // Subtle top border accent
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            $color-border 20%,
+            $color-border 80%,
+            transparent
+        );
+    }
+}
+
+.inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-12;
+    align-items: start;
+
+    @include bp.above(tablet) {
+        grid-template-columns: 2fr 3fr;
+        gap: $space-16;
+        align-items: center;
+    }
+}
+
+// ── Left Column ────────────────────────────────────────────────────
+.leftCol {
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
+}
+
+.yearBlock {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.yearNumber {
+    font-family: $font-display;
+    font-size: clamp(5rem, 14vw, 10rem);
+    font-weight: 800;
+    color: $color-primary;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    display: block;
+}
+
+.yearLabel {
+    font-family: $font-display;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+    margin-top: $space-3;
+}
+
+.pullQuote {
+    margin: 0;
+    padding-left: $space-5;
+    border-left: 3px solid $color-primary;
+
+    p {
+        font-family: $font-body;
+        font-style: italic;
+        font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+        font-weight: 500;
+        color: $color-text;
+        line-height: 1.45;
+    }
+}
+
+.credentialPill {
+    display: inline-block;
+    background: rgba($color-blue-light, 0.12);
+    border: 1px solid rgba($color-blue-light, 0.3);
+    color: $color-blue-light;
+    font-family: $font-display;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: $space-2 $space-4;
+    border-radius: $radius-full;
+    align-self: flex-start;
+}
+
+// ── Right Column ───────────────────────────────────────────────────
+.rightCol {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+}
+
+.sectionLabel {
+    font-family: $font-display;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        background: $color-primary;
+        flex-shrink: 0;
+    }
+}
+
+.heading {
+    font-family: $font-display;
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: $color-text;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+
+    p {
+        font-family: $font-body;
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: $color-text-muted;
+
+        strong {
+            color: $color-text;
+            font-weight: 600;
+        }
+    }
+}
+
+.statsRow {
+    display: flex;
+    align-items: center;
+    gap: $space-6;
+    padding-top: $space-6;
+    border-top: 1px solid $color-border;
+    flex-wrap: wrap;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+}
+
+.statValue {
+    font-family: $font-display;
+    font-size: 2rem;
+    font-weight: 800;
+    color: $color-primary;
+    line-height: 1;
+}
+
+.statDesc {
+    font-family: $font-body;
+    font-size: 0.82rem;
+    color: $color-text-muted;
+    line-height: 1.4;
+}
+
+.statDivider {
+    width: 1px;
+    height: 40px;
+    background: $color-border;
+    flex-shrink: 0;
+}

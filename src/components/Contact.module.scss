@@ -1,0 +1,355 @@
+@use '../styles/variables' as *;
+@use '../styles/breakpoints' as bp;
+
+.contact {
+    @include section-padding;
+    background: rgba(255, 255, 255, 0.02);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            $color-border 20%,
+            $color-border 80%,
+            transparent
+        );
+    }
+}
+
+.inner {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    gap: $space-16;
+}
+
+.sectionHeader {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    max-width: 600px;
+}
+
+.sectionLabel {
+    font-family: $font-display;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        background: $color-primary;
+        flex-shrink: 0;
+    }
+}
+
+.sectionHeading {
+    font-family: $font-display;
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: $color-text;
+}
+
+.sectionIntro {
+    font-family: $font-body;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: $color-text-muted;
+    line-height: 1.7;
+}
+
+// ── Two-column grid ────────────────────────────────────────────────
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-12;
+
+    @include bp.above(tablet) {
+        grid-template-columns: 1fr 1.2fr;
+        gap: $space-16;
+        align-items: start;
+    }
+}
+
+// ── Info Column ────────────────────────────────────────────────────
+.infoCol {
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
+}
+
+.phoneCta {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-3;
+    background: $color-primary;
+    color: #fff;
+    font-family: $font-display;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    padding: $space-4 $space-8;
+    border-radius: $radius-sm;
+    transition: background 0.2s ease, transform 0.18s ease;
+    min-height: 68px;
+    cursor: pointer;
+
+    &:hover {
+        background: $color-primary-hover;
+        transform: translateY(-2px);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:hover {
+            transform: none;
+        }
+    }
+}
+
+.contactDetails {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+}
+
+.detailItem {
+    display: flex;
+    gap: $space-4;
+    align-items: flex-start;
+}
+
+.detailIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-md;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-primary;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.detailContent {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+}
+
+.detailLabel {
+    font-family: $font-display;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+}
+
+.detailValue {
+    font-family: $font-body;
+    font-size: 0.95rem;
+    color: $color-text;
+    transition: color 0.2s ease;
+
+    &[href]:hover {
+        color: $color-primary;
+    }
+}
+
+.detailNote {
+    font-family: $font-body;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: $color-text-muted;
+}
+
+.hoursTable {
+    border-collapse: collapse;
+    width: 100%;
+
+    td {
+        padding: $space-1 0;
+        font-family: $font-body;
+        font-size: 0.9rem;
+    }
+}
+
+.hoursDay {
+    color: $color-text-muted;
+    width: 100px;
+    vertical-align: top;
+}
+
+.hoursTime {
+    color: $color-text;
+    font-weight: 500;
+}
+
+// ── Form Column ────────────────────────────────────────────────────
+.formCol {
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    padding: $space-8;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-5;
+}
+
+.fieldRow {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-5;
+
+    @include bp.above(tablet) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+}
+
+.label {
+    font-family: $font-display;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+
+    span {
+        color: $color-primary;
+    }
+}
+
+.input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    color: $color-text;
+    font-family: $font-body;
+    font-size: 0.95rem;
+    padding: $space-3 $space-4;
+    width: 100%;
+    min-height: 48px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+    }
+
+    &:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $color-primary;
+        background: rgba(255, 134, 0, 0.04);
+    }
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+.submitBtn {
+    background: $color-primary;
+    color: #fff;
+    font-family: $font-display;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: $space-4 $space-8;
+    border-radius: $radius-sm;
+    min-height: 52px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.18s ease;
+    align-self: flex-start;
+
+    &:hover {
+        background: $color-primary-hover;
+        transform: translateY(-1px);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:hover {
+            transform: none;
+        }
+    }
+}
+
+// ── Success State ──────────────────────────────────────────────────
+.successMsg {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    padding: $space-8;
+    text-align: center;
+}
+
+.successTitle {
+    font-family: $font-display;
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: $color-primary;
+}
+
+.successBody {
+    font-family: $font-body;
+    font-size: 1rem;
+    font-style: italic;
+    color: $color-text-muted;
+    line-height: 1.7;
+}
+
+// ── Map ────────────────────────────────────────────────────────────
+.mapWrap {
+    border-radius: $radius-lg;
+    overflow: hidden;
+    border: 1px solid $color-border;
+}
+
+.map {
+    display: block;
+    width: 100%;
+    height: 450px;
+    filter: grayscale(20%);
+}

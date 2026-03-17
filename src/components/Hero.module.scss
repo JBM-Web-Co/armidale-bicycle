@@ -1,0 +1,268 @@
+@use '../styles/variables' as *;
+@use '../styles/breakpoints' as bp;
+
+.hero {
+    position: relative;
+    height: 100svh;
+    min-height: 600px;
+    background: $color-bg;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+// ── Background Image ────────────────────────────────────────────────
+.imageWrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    // Mobile: full bleed, heavy overlay
+    @include bp.below(tablet) {
+        opacity: 0.2;
+    }
+
+    // Desktop: right side, diagonal clip
+    @include bp.above(tablet) {
+        left: 36%;
+        clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        $color-bg 0%,
+        rgba($color-bg, 0.5) 40%,
+        transparent 100%
+    );
+
+    @include bp.below(tablet) {
+        background: rgba($color-bg, 0.7);
+    }
+}
+
+// ── Diagonal Accent Stripe ──────────────────────────────────────────
+.diagonalAccent {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 34%;
+    width: 6px;
+    background: $color-primary;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, -15% 100%);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 1;
+
+    @include bp.below(tablet) {
+        display: none;
+    }
+}
+
+// ── Content ─────────────────────────────────────────────────────────
+.inner {
+    @include container;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding-top: 80px; // clear fixed header
+}
+
+.content {
+    max-width: 680px;
+    padding: $space-8 0;
+
+    @include bp.above(tablet) {
+        max-width: 52%;
+        padding: $space-12 0;
+    }
+}
+
+.eyebrow {
+    font-family: $font-display;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $color-primary;
+    margin-bottom: $space-5;
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 32px;
+        height: 2px;
+        background: $color-primary;
+        margin-right: $space-3;
+        flex-shrink: 0;
+    }
+}
+
+.headline {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $space-6;
+}
+
+.headlineRow {
+    font-family: $font-display;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: $color-text;
+    display: block;
+}
+
+.headlineAccent {
+    color: $color-primary;
+    // Subtle texture: italic for rhythm
+    font-style: italic;
+}
+
+.sub {
+    font-family: $font-body;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-style: italic;
+    color: $color-text-muted;
+    line-height: 1.75;
+    margin-bottom: $space-8;
+    max-width: 480px;
+}
+
+.ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-4;
+}
+
+.ctaPrimary {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    background: $color-primary;
+    color: #fff;
+    font-family: $font-display;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: $space-4 $space-8;
+    border-radius: $radius-sm;
+    transition: background 0.2s, transform 0.18s;
+    min-height: 52px;
+    cursor: pointer;
+
+    &:hover {
+        background: $color-primary-hover;
+        transform: translateY(-2px);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:hover {
+            transform: none;
+        }
+    }
+}
+
+.ctaSecondary {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    background: transparent;
+    color: $color-text;
+    font-family: $font-display;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: $space-4 $space-8;
+    border-radius: $radius-sm;
+    border: 2px solid $color-border;
+    transition: border-color 0.2s, color 0.2s, transform 0.18s;
+    min-height: 52px;
+    cursor: pointer;
+
+    &:hover {
+        border-color: $color-text;
+        color: $color-text;
+        transform: translateY(-2px);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:hover {
+            transform: none;
+        }
+    }
+}
+
+// ── Scroll Hint ─────────────────────────────────────────────────────
+.scrollHint {
+    position: absolute;
+    bottom: $space-8;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-2;
+    z-index: 2;
+
+    @include bp.below(tablet) {
+        display: none;
+    }
+}
+
+.scrollLine {
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, $color-primary, transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+}
+
+.scrollLabel {
+    font-family: $font-display;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+}
+
+@keyframes scrollPulse {
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scaleY(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleY(0.6);
+    }
+}

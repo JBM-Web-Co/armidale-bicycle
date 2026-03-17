@@ -1,0 +1,83 @@
+@use '../styles/variables' as *;
+@use '../styles/breakpoints' as bp;
+
+.stats {
+    background: $color-primary;
+    padding: $space-12 0;
+    position: relative;
+    overflow: hidden;
+
+    // Subtle diagonal stripe texture
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+            -55deg,
+            transparent,
+            transparent 20px,
+            rgba(0, 0, 0, 0.04) 20px,
+            rgba(0, 0, 0, 0.04) 21px
+        );
+        pointer-events: none;
+    }
+}
+
+.inner {
+    @include container;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-8 $space-6;
+    position: relative;
+    z-index: 1;
+
+    @include bp.above(tablet) {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+    }
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: $space-4;
+    position: relative;
+
+    @include bp.above(tablet) {
+        padding: $space-6;
+
+        // Vertical dividers between items
+        &:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.25);
+        }
+    }
+}
+
+.value {
+    font-family: $font-display;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    display: block;
+    margin-bottom: $space-2;
+}
+
+.label {
+    font-family: $font-body;
+    font-size: clamp(0.78rem, 1.2vw, 0.9rem);
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.4;
+    max-width: 120px;
+    display: block;
+}

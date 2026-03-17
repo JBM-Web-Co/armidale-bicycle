@@ -1,0 +1,193 @@
+@use '../styles/variables' as *;
+@use '../styles/breakpoints' as bp;
+
+.services {
+    @include section-padding;
+    background: rgba(255, 255, 255, 0.02);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            $color-border 20%,
+            $color-border 80%,
+            transparent
+        );
+    }
+}
+
+.inner {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    gap: $space-16;
+}
+
+.sectionHeader {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+
+    @include bp.above(tablet) {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+}
+
+.sectionLabel {
+    font-family: $font-display;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    align-self: flex-start;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        background: $color-primary;
+        flex-shrink: 0;
+    }
+}
+
+.sectionHeading {
+    font-family: $font-display;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: $color-text;
+}
+
+// ── Cards Grid ──────────────────────────────────────────────────────
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-4;
+
+    @include bp.above(tablet) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $space-5;
+    }
+}
+
+.card {
+    position: relative;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    padding: $space-8;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.25s ease;
+    cursor: default;
+
+    &:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.07);
+        transform: translateY(-3px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:hover {
+            transform: none;
+        }
+    }
+}
+
+.cardHighlight {
+    border-color: rgba($color-primary, 0.4);
+    background: rgba($color-primary, 0.04);
+
+    &:hover {
+        border-color: rgba($color-primary, 0.6);
+        background: rgba($color-primary, 0.07);
+    }
+}
+
+.cardHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: $space-2;
+}
+
+.cardNum {
+    font-family: $font-display;
+    font-size: 5rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.04);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    position: absolute;
+    top: $space-4;
+    left: $space-6;
+    pointer-events: none;
+    user-select: none;
+}
+
+.iconWrap {
+    width: 52px;
+    height: 52px;
+    border-radius: $radius-md;
+    background: rgba($color-primary, 0.12);
+    border: 1px solid rgba($color-primary, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-primary;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    background: $color-primary;
+    color: #fff;
+    font-family: $font-display;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: $space-1 + 0.1rem $space-3;
+    border-radius: $radius-full;
+    align-self: flex-start;
+}
+
+.cardTitle {
+    font-family: $font-display;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: $color-text;
+    line-height: 1.1;
+}
+
+.cardDesc {
+    font-family: $font-body;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: $color-text-muted;
+}

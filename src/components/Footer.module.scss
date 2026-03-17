@@ -1,0 +1,164 @@
+@use '../styles/variables' as *;
+@use '../styles/breakpoints' as bp;
+
+.footer {
+    background: #00002e;
+    border-top: 1px solid $color-border;
+    padding: $space-16 0 $space-8;
+}
+
+.inner {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    gap: $space-10;
+}
+
+.top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-8;
+
+    @include bp.above(tablet) {
+        grid-template-columns: 1.8fr 1fr 1.6fr 1fr;
+        gap: $space-10;
+        align-items: start;
+    }
+}
+
+// ── Brand col ──────────────────────────────────────────────────────
+.brand {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+}
+
+.logo {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.abn {
+    font-family: $font-body;
+    font-size: 0.78rem;
+    color: $color-text-muted;
+}
+
+// ── Generic columns ────────────────────────────────────────────────
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+}
+
+.colHeading {
+    font-family: $font-display;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $color-text;
+}
+
+.linkList {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+}
+
+.link {
+    font-family: $font-body;
+    font-size: 0.9rem;
+    color: $color-text-muted;
+    transition: color 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        color: $color-text;
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+        border-radius: 2px;
+    }
+}
+
+// ── Contact list ───────────────────────────────────────────────────
+.contactList {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+}
+
+.contactLink {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    font-family: $font-body;
+    font-size: 0.9rem;
+    color: $color-text-muted;
+    transition: color 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        color: $color-primary;
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+        border-radius: 2px;
+    }
+}
+
+.address {
+    font-family: $font-body;
+    font-size: 0.85rem;
+    color: $color-text-muted;
+    line-height: 1.55;
+}
+
+// ── Hours table ────────────────────────────────────────────────────
+.hours {
+    border-collapse: collapse;
+    width: 100%;
+
+    td {
+        padding: $space-1 0;
+        font-family: $font-body;
+        font-size: 0.88rem;
+    }
+}
+
+.hoursDay {
+    color: $color-text-muted;
+    width: 80px;
+    vertical-align: top;
+}
+
+.hoursTime {
+    color: $color-text;
+}
+
+// ── Bottom bar ─────────────────────────────────────────────────────
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: $space-3;
+    padding-top: $space-8;
+    border-top: 1px solid $color-border;
+
+    p {
+        font-family: $font-body;
+        font-size: 0.8rem;
+        color: $color-text-muted;
+    }
+}
+
+.attribution {
+    opacity: 0.5;
+    font-size: 0.75rem !important;
+}

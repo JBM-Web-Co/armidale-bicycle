@@ -1,0 +1,211 @@
+@use '../styles/variables' as *;
+@use '../styles/breakpoints' as bp;
+
+.brands {
+    @include section-padding;
+    background: $color-bg;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            $color-border 20%,
+            $color-border 80%,
+            transparent
+        );
+    }
+}
+
+.inner {
+    @include container;
+}
+
+.sectionHeader {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    margin-bottom: $space-12;
+}
+
+.sectionLabel {
+    font-family: $font-display;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        background: $color-primary;
+        flex-shrink: 0;
+    }
+}
+
+.sectionHeading {
+    font-family: $font-display;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: $color-text;
+}
+
+// ── Scrolling Rows ──────────────────────────────────────────────────
+.scrollArea {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    margin-bottom: $space-12;
+    // Fade edges
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+    );
+}
+
+.row {
+    overflow: hidden;
+}
+
+.track {
+    display: flex;
+    gap: $space-4;
+    width: max-content;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none !important;
+    }
+}
+
+.trackLeft {
+    animation: scrollLeft 40s linear infinite;
+}
+
+.trackRight {
+    animation: scrollRight 40s linear infinite;
+}
+
+@keyframes scrollLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollRight {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+// ── Logo Items ──────────────────────────────────────────────────────
+.logoLink {
+    display: block;
+    flex-shrink: 0;
+    cursor: pointer;
+
+    &:focus-visible {
+        @include focus-ring;
+        border-radius: $radius-md;
+    }
+}
+
+.logoPill {
+    background: #fff;
+    border-radius: $radius-md;
+    padding: $space-3 $space-5;
+    width: 140px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &:hover {
+            transform: none;
+        }
+    }
+}
+
+.logoImg {
+    max-height: 40px;
+    max-width: 110px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+// ── Parts & Accessories ─────────────────────────────────────────────
+.accessories {
+    padding-top: $space-10;
+    border-top: 1px solid $color-border;
+}
+
+.accessoriesHeading {
+    font-family: $font-display;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+    margin-bottom: $space-5;
+}
+
+.tagCloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+}
+
+.tag {
+    font-family: $font-body;
+    font-size: 0.88rem;
+    color: $color-text-muted;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    padding: $space-2 $space-4;
+    border-radius: $radius-full;
+    transition: color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+        color: $color-text;
+        border-color: rgba(255, 255, 255, 0.25);
+    }
+}
