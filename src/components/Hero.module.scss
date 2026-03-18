@@ -19,7 +19,7 @@
 
     // Mobile: full bleed, heavy overlay
     @include bp.below(tablet) {
-        opacity: 0.2;
+        opacity: 0.45;
     }
 
     // Desktop: right side, diagonal clip
@@ -47,7 +47,7 @@
     );
 
     @include bp.below(tablet) {
-        background: rgba($color-bg, 0.7);
+        background: rgba($color-bg, 0.4);
     }
 }
 
@@ -162,7 +162,9 @@
     text-transform: uppercase;
     padding: $space-4 $space-8;
     border-radius: $radius-sm;
-    transition: background 0.2s, transform 0.18s;
+    transition:
+        background 0.2s,
+        transform 0.18s;
     min-height: 52px;
     cursor: pointer;
 
@@ -196,7 +198,10 @@
     padding: $space-4 $space-8;
     border-radius: $radius-sm;
     border: 2px solid $color-border;
-    transition: border-color 0.2s, color 0.2s, transform 0.18s;
+    transition:
+        border-color 0.2s,
+        color 0.2s,
+        transform 0.18s;
     min-height: 52px;
     cursor: pointer;
 

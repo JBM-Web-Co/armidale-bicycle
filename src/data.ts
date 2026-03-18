@@ -36,7 +36,7 @@ export const BUSINESS: BusinessInfo = {
     phoneDisplay: '02 6772 3718',
     email: 'armidalebicyclecentre@gmail.com',
     address: '2/244 Beardy St, Armidale NSW 2350',
-    locationNote: 'Opposite Centro Armidale Plaza (Big W and Woolworths)',
+    locationNote: 'Opposite Centro Armidale Plaza (Kmart and Woolworths)',
     abn: '65 001 353 902',
 } as const;
 

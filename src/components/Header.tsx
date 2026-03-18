@@ -21,33 +21,59 @@ export function Header() {
     const closeMenu = () => setMenuOpen(false);
 
     return (
-        <header id="top" className={`${s.header} ${scrolled ? s.scrolled : ''}`} role="banner">
+        <header
+            id="top"
+            className={`${s.header} ${scrolled ? s.scrolled : ''}`}
+            role="banner"
+        >
             <div className={s.inner}>
-                <a href="#top" className={s.logo} aria-label="Armidale Bicycle Centre — Home">
-                    <img src="./logo.png" alt="Armidale Bicycle Centre" className={s.logoImg} />
+                <a
+                    href="#top"
+                    className={s.logo}
+                    aria-label="Armidale Bicycle Centre — Home"
+                >
+                    <img
+                        src="./logo.png"
+                        alt="Armidale Bicycle Centre"
+                        className={s.logoImg}
+                    />
                 </a>
 
                 <nav className={s.nav} aria-label="Main navigation">
                     {NAV_LINKS.map((link) => (
-                        <a key={link.href} href={link.href} className={s.navLink}>
+                        <a
+                            key={link.href}
+                            href={link.href}
+                            className={s.navLink}
+                        >
                             {link.label}
                         </a>
                     ))}
                 </nav>
 
                 <div className={s.actions}>
-                    <a href={BUSINESS.phone} className={s.ctaBtn} aria-label={`Call us: ${BUSINESS.phoneDisplay}`}>
+                    <a
+                        href={BUSINESS.phone}
+                        className={s.ctaBtn}
+                        aria-label={`Call us: ${BUSINESS.phoneDisplay}`}
+                    >
                         <Phone size={16} aria-hidden="true" />
                         <span>Call Us</span>
                     </a>
                     <button
                         className={s.hamburger}
                         onClick={() => setMenuOpen((v) => !v)}
-                        aria-label={menuOpen ? 'Close menu' : 'Open navigation menu'}
+                        aria-label={
+                            menuOpen ? 'Close menu' : 'Open navigation menu'
+                        }
                         aria-expanded={menuOpen}
                         aria-controls="mobile-menu"
                     >
-                        {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+                        {menuOpen ? (
+                            <X size={22} aria-hidden="true" />
+                        ) : (
+                            <Menu size={22} aria-hidden="true" />
+                        )}
                     </button>
                 </div>
             </div>
